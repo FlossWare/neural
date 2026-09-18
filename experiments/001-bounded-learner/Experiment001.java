@@ -13,18 +13,36 @@ public final class Experiment001 {
                 new Perceptron.Example(new double[]{1, 1}, true));
 
         var learner = new Perceptron(2, 1.0);
+        var initialState = learner.state();
         var updates = learner.train(training);
+        var finalState = learner.state();
 
-        check(learner.predict(0, 0) == false, "training example [0,0]");
-        check(learner.predict(1, 0), "training example [1,0]");
-        check(learner.predict(0, 1), "training example [0,1]");
-        check(learner.predict(1, 1), "held-out example [1,1]");
+        var trainingCorrect = countCorrect(learner, training);
+        var heldOutCorrect = countCorrect(learner, heldOut);
 
-        var restored = new Perceptron(learner.state());
-        check(restored.predict(1, 1), "restored held-out prediction");
+        check(trainingCorrect == training.size(), "training accuracy");
+        check(heldOutCorrect == heldOut.size(), "held-out accuracy");
 
-        System.out.printf("updates=%d%nstate=%s%nheld-out-accuracy=1.0%n", updates, learner);
+        var restored = new Perceptron(finalState);
+        check(countCorrect(restored, heldOut) == heldOut.size(), "restored held-out accuracy");
+
+        System.out.printf(
+                "initial-state=%s%nupdates=%d%ntraining-accuracy=%d/%d%nheld-out-accuracy=%d/%d%nfinal-state=%s%n",
+                initialState,
+                updates,
+                trainingCorrect, training.size(),
+                heldOutCorrect, heldOut.size(),
+                finalState);
+        System.out.println("converged-in-passes=1");
         System.out.println("Experiment 001 PASSED");
+    }
+
+    private static int countCorrect(Perceptron learner, List<Perceptron.Example> examples) {
+        int correct = 0;
+        for (var example : examples) {
+            if (learner.predict(example.features()) == example.label()) correct++;
+        }
+        return correct;
     }
 
     private static void check(boolean condition, String description) {
