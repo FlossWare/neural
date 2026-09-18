@@ -32,3 +32,16 @@ Loom integration is expected later. Early experiments may use disposable impleme
 ## Status
 
 Research / experimental.
+
+
+## First experiment
+
+The initial implementation is intentionally small:
+
+- a dense feature vector value object,
+- a single binary perceptron learner,
+- deterministic evaluation,
+- explicit learned-state persistence,
+- repeatable JUnit experiments.
+
+The perceptron is implemented directly rather than introducing a neural-network framework. The purpose is to make the learning behavior observable before adding abstraction or infrastructure.
