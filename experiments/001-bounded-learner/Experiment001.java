@@ -7,9 +7,9 @@ public final class Experiment001 {
 
     public static void main(String[] args) {
         var training = List.of(
-                new Perceptron.Example(new double[]{0, 0}, false),
                 new Perceptron.Example(new double[]{1, 0}, true),
-                new Perceptron.Example(new double[]{0, 1}, true));
+                new Perceptron.Example(new double[]{0, 1}, true),
+                new Perceptron.Example(new double[]{0, 0}, false));
 
         var heldOut = List.of(
                 new Perceptron.Example(new double[]{1, 1}, true));
