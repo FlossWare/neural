@@ -16,6 +16,13 @@ public final class Perceptron {
         this.learningRate = learningRate;
     }
 
+
+    public Perceptron(State state) {
+        this.weights = state.weights();
+        this.bias = state.bias();
+        this.learningRate = state.learningRate();
+    }
+
     public boolean predict(double... features) {
         return activation(features) >= 0.0;
     }
