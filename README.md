@@ -1,34 +1,52 @@
-# Neural
+# neural
 
 Experimental neural learning research for FlossWare.
 
-## Purpose
+This repository explores small, understandable learning systems before introducing framework or infrastructure complexity.
 
-This repository explores small neural learners, learning behavior, persistence, evaluation, lineage, and eventually collective/evolutionary learning.
+## Research direction
 
-The project deliberately starts small. It is research code, not a production framework.
+The initial question is deliberately small:
 
-## Initial direction
+> Can a simple learner acquire a bounded behavior from examples, retain what it learned, and generalize to examples it did not see?
 
-The first experiments will establish whether a small learner can:
+The experiments will examine:
 
-1. learn a bounded task from examples,
-2. retain what it learned,
-3. generalize beyond the examples,
-4. persist learned state,
-5. participate in repeatable experiments.
+- learning versus memorization
+- retained learner state
+- generalization
+- deterministic evaluation
+- persistence and restoration
+- increasingly complex learning rules
+- interaction among multiple learners
 
-AI/model teachers are intentionally kept outside this repository's core concerns. Those experiments belong in `neural-ai`.
+Core learning mechanisms are intentionally implemented from first principles where practical. External libraries should earn their place by enabling an experiment, not by defining the experiment.
 
 ## Relationship to other FlossWare projects
 
-- `neural`: neural learning research and core concepts.
-- `neural-ai`: neural learning using AI models as teachers or knowledge sources.
-- `loom`: language-neutral execution substrate.
-- `loom-ai`: AI execution contracts and semantics.
+- neural: learning mechanisms and learner behavior.
+- neural-ai: experiments where AI models act as teachers or knowledge sources.
+- loom: language-neutral execution substrate, introduced when experiments need it.
+- loom-ai: AI execution contracts and model-provider semantics.
 
-Loom integration is expected later. Early experiments may use disposable implementations where that produces evidence faster.
+neural does not depend on neural-ai. A future integration should pass teaching signals into a learner through a small, language-neutral boundary.
 
-## Status
+## Current experiment
 
-Research / experimental.
+Experiment 001 defines the first research target: a minimal binary learner evaluated on held-out examples.
+
+No Maven project, framework, or Loom dependency is required at this stage. The point is to learn what the learner needs before building a small software cathedral around it.
+
+## Research discipline
+
+Each experiment should state:
+
+1. hypothesis
+2. smallest implementation needed
+3. training data
+4. evaluation data
+5. measurements
+6. observed result
+7. what the result changes about the next experiment
+
+Results should be reproducible where practical, and negative results are useful evidence rather than failures to hide.
