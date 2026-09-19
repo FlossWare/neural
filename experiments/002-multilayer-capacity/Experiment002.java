@@ -16,7 +16,7 @@ public final class Experiment002 {
         var heldOut = List.of(
                 new Example(new double[]{0.1, 0.9}, true),
                 new Example(new double[]{0.9, 0.9}, false),
-                new Example(new double[]{0.2, 0.2}, true),
+                new Example(new double[]{0.2, 0.2}, false),
                 new Example(new double[]{0.8, 0.2}, true));
 
         var single = new Perceptron(2, LEARNING_RATE);
